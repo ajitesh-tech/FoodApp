@@ -1,2 +1,3 @@
 export const CDN_URL="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 export const LOGO_URL="https://www.shutterstock.com/shutterstock/photos/788158546/display_1500/stock-vector-food-delivery-delivery-label-for-online-shopping-worldwide-shipping-vector-illustration-788158546.jpg";
+export const MENU_URL="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0386125&lng=77.6215256&restaurantId="

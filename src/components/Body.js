@@ -1,10 +1,11 @@
 import ResturantCard from "./ResturantCard";
 import {useState,useEffect} from "react";
 import Shimmer from "./shimmer";
-
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils.js/useOnlineStatus";
 const  Body= ()=>{
     const [listOfResturant,setListOfResturant] = useState([]);
-     const [listOfFilteredResturant,setListOfFilteredResturant] = useState([]);
+    const [listOfFilteredResturant,setListOfFilteredResturant] = useState([]);
     const [searchText,setSearchText] = useState("");
 
     useEffect(()=> {
@@ -21,6 +22,8 @@ const  Body= ()=>{
         setListOfFilteredResturant(resData);
     };
     
+    const onLineStatus = useOnlineStatus();
+    if(onLineStatus === false) return (<h1>Looks like you are offline</h1>)
     return  listOfResturant.length===0 ? <Shimmer/> :(
         <div className="body">
             <div className="filter">
@@ -33,11 +36,7 @@ const  Body= ()=>{
                     console.log(searchText);
                  let listOfName = listOfResturant.filter(resturent=>resturent.info.name.toLowerCase().includes(searchText.toLowerCase()));
                  console.log(listOfName);
-               // setListOfResturant(listOfName);
                setListOfFilteredResturant(listOfName);
-
-                 // console.log(listOfResturant.info.name.contains(searchText));
-                  // setListOfResturant(listOfResturant.filter(res=>res.name.contains(searchText)));
                 }}>Search</button>
             </div>
 
@@ -49,7 +48,9 @@ const  Body= ()=>{
             
             <div className="res-container">
                 {
-                    listOfFilteredResturant.map((item,index)=><ResturantCard key={item.info.id} res={item.info}/>)
+                    listOfFilteredResturant.map((item,index)=>
+                   (<Link to={"/resturants/"+item.info.id} key={item.info.id}> <ResturantCard  res={item.info} /> </Link> )
+                )
                 }
             </div>
     

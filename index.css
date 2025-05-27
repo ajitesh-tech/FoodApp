@@ -66,3 +66,7 @@
     padding:0 40px;
     cursor: pointer;
 }
+.user-card{
+    padding: 10px;
+    border: solid;
+}
